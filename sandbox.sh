@@ -1,4 +1,9 @@
 #!/bin/bash
 
 apt-get update
-apt-get upgrade -y
+apt-get dist-upgrade -y
+
+mkdir -p /tmp/setup-sandbox
+cd /tmp/setup-sandbox
+wget https://raw.github.com/fdewinne/setup/master/scripts/mariadb.sh
+./mariadb.sh
