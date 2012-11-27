@@ -12,3 +12,4 @@ chmod +x _setup.sh
 ./_setup.sh mariadb
 ./_setup.sh subversion
 ./_setup.sh git
+./_setup.sh zend-server
