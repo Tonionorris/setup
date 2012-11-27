@@ -15,3 +15,15 @@ if [ -z "$grep_output" ]; then
 	LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/zend/lib" >> /etc/profile
 	source /etc/profile
 fi
+
+/usr/local/zend/bin/pear update-channels
+/usr/local/zend/bin/pear channel-discover pear.phpunit.de
+/usr/local/zend/bin/pear channel-discover pear.symfony.com
+/usr/local/zend/bin/pear channel-discover pear.phing.info
+/usr/local/zend/bin/pear channel-discover pear.pdepend.org
+/usr/local/zend/bin/pear channel-discover pear.phpmd.org
+/usr/local/zend/bin/pear channel-discover pear.phpdoc.org
+/usr/local/zend/bin/pear upgrade-all
+/usr/local/zend/bin/pear install --alldeps phpunit/PHPUnit
+/usr/local/zend/bin/pear install phing/phing
+updatedb
