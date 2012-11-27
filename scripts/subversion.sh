@@ -1,4 +1,4 @@
 #!/bin/bash
 
 apt-get update
-apt-get install subversion-tools
+apt-get install -y subversion-tools
