@@ -1,18 +1,20 @@
 #!/bin/bash
 
+VERSION="5.4"
 wget http://repos.zend.com/zend.key -O- |apt-key add -
 
 echo "# Zend Server
-deb http://repos.zend.com/zend-server/6.0/beta/deb server non-free" > /etc/apt/sources.list.d/zend-server.list
+deb http://repos.zend.com/zend-server/deb server non-free
+deb http://repos.zend.com/zend-server/preview-php5.4/deb server non-free" > /etc/apt/sources.list.d/zend-server.list
 
 apt-get update
-apt-get install -y zend-server-php-5.4
+apt-get install -y zend-server-php-$VERSION php-$VERSION-extra-extensions-zend-server
 
-grep_output="$(grep \"\/usr\/local\/zend\/lib\" /etc/profile)"
+grep_output=$(grep -c "\/usr\/local\/zend\/lib" /etc/profile)
 
-if [ -z "$grep_output" ]; then
-	echo "PATH=$PATH:/usr/local/zend/bin
-	LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/zend/lib" >> /etc/profile
+if [ $grep_output -eq 0 ]; then
+	echo "PATH=\$PATH:/usr/local/zend/bin
+LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:/usr/local/zend/lib" >> /etc/profile
 	source /etc/profile
 fi
 
@@ -27,3 +29,4 @@ fi
 /usr/local/zend/bin/pear install --alldeps phpunit/PHPUnit
 /usr/local/zend/bin/pear install phing/phing
 updatedb
+source /etc/profile
