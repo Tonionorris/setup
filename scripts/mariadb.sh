@@ -1,11 +1,8 @@
 #!/bin/bash
 
-apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 1BB943DB
-
-echo "# MariaDB 5.5 repository list - created 2012-11-20 22:31 UTC
-# http://downloads.mariadb.org/mariadb/repositories/
-deb http://ftp.igh.cnrs.fr/pub/mariadb//repo/5.5/ubuntu precise main
-deb-src http://ftp.igh.cnrs.fr/pub/mariadb//repo/5.5/ubuntu precise main" > /etc/apt/sources.list.d/MariaDB.list
+sudo apt-get install python-software-properties
+sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
+sudo add-apt-repository 'deb http://mariadb.cu.be//repo/10.0/ubuntu precise main'
 
 apt-get update
 apt-get install -y mariadb-server mariadb-client

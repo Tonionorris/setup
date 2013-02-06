@@ -19,11 +19,11 @@ VALUES=$(dialog --ok-label "Install" \
 	  --checklist "Choose packages to install" \
 15 70 0 \
 	"mariadb" "MariaDB server" off \
-	"zend-server" "Zend Server" off \
 	"subversion" "SVN client" off \
 	"git" "git client" off \
-	"jenkins" "Jenkins continuous integration server" off \
+	"zend-server" "Zend Server" off \
 	"webmin" "Webmin management interface" off \
+	"jenkins" "Jenkins continuous integration server" off \
 2>&1 1>&3)
  
 # close fd
