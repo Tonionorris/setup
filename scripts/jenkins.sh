@@ -81,9 +81,9 @@ if [ $RESULT -eq 0 ] ; then
 	# Inject the list of available plugin in Jenkins 
 	
 	# Get the update center ourself
-	result=$(wget -nv -S -O default.js http://updates.jenkins-ci.org/update-center.json 2>&1 | grep -c "200 OK")
-	
-	if [ $result -neq 0 ] ; then
+	WGETRESULT=$(wget -nv -S -O default.js http://updates.jenkins-ci.org/update-center.json 2>&1 | grep -c "200 OK")
+	echo $WGETRESULT
+	if [ $WGETRESULT -neq 0 ] ; then
 	  
 		# remove first and last line javascript wrapper
 		sed '1d;$d' default.js > default.json
