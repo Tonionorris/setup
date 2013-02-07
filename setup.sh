@@ -32,7 +32,6 @@ RESULT=$?
 
 # close fd
 exec 3>&-
-clear
 
 if [ $RESULT -neq 0 ] ; then
 	exit
