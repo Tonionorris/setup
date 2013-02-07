@@ -1,14 +1,6 @@
 #!/bin/bash
 
-sudo -i
 apt-get install dialog -y
-
-mariadb=""
-zend-server=""
-subversion=""
-git=""
-jenkins=""
-webmin=""
 
 # open fd
 exec 3>&1
