@@ -46,19 +46,56 @@ if [ $grep_output -eq 0 ]; then
 	echo "alias jenkins=\"$JENKINS\"" >> /etc/profile
 	source /etc/profile
 fi
+exit
+# open fd
+exec 3>&1
  
-# Inject the list of available plugin in Jenkins 
+# Store data to $VALUES variable
+VALUES=$(dialog --ok-label "Install" \
+	  --separate-output \
+	  --backtitle "" \
+	  --clear \
+	  --title "Jenkins plugins" \
+	  --checklist "Choose plugins" \
+15 70 0 \
+	phing "phing" on \
+	analysis-collector "analysis-collector" on \
+	checkstyle "checkstyle" on \
+	cloverphp "cloverphp" on \
+	htmlpublisher "htmlpublisher" on \
+	jdepend "jdepend" on \
+	plot "plot" on \
+	pmd "pmd" on \
+	violations "violations" on \
+	xunit "xunit" on \
+	github "github" on \
+2>&1 1>&3)
 
-# Get the update center ourself
-wget -O default.js http://updates.jenkins-ci.org/update-center.json
- 
-# remove first and last line javascript wrapper
-sed '1d;$d' default.js > default.json
- 
-# Now push it to the update URL
-curl -X POST -H "Accept: application/json" -d @default.json http://localhost:8080/updateCenter/byId/default/postBack --verbose
+RESULT=$?
 
-# Now install the desired plugins
-$JENKINS install-plugin phing analysis-collector checkstyle cloverphp dry htmlpublisher jdepend plot pmd violations xunit github
+# close fd
+exec 3>&-
+
+if [ $RESULT -eq 0 ] ; then
+
+	# Inject the list of available plugin in Jenkins 
+	
+	# Get the update center ourself
+	WGETRESULT=$(wget -nv -S -O default.js http://updates.jenkins-ci.org/update-center.json 2>&1 | grep -c "200 OK")
+
+	if [ $WGETRESULT -eq 1 ] ; then
+	  
+		# remove first and last line javascript wrapper
+		sed '1d;$d' default.js > default.json
+		 
+		# Now push it to the update URL
+		curl -X POST -H "Accept: application/json" -d @default.json http://localhost:8080/updateCenter/byId/default/postBack
+		
+			
+		# Now install the desired plugins
+		$JENKINS install-plugin $VALUES
+	fi
+fi
+
 
 $JENKINS safe-restart
