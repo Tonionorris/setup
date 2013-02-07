@@ -2,7 +2,7 @@
 
 PACKAGE="$1"
 
-cd /tmp/setup-sandbox
+cd /tmp/setup
 
 wget https://raw.github.com/vaconsulting/setup/master/scripts/$PACKAGE.sh
 chmod +x $PACKAGE.sh
