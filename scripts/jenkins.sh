@@ -81,18 +81,20 @@ if [ $RESULT -eq 0 ] ; then
 	# Inject the list of available plugin in Jenkins 
 	
 	# Get the update center ourself
-	wget -O default.js http://updates.jenkins-ci.org/update-center.json
-	 
-	# remove first and last line javascript wrapper
-	sed '1d;$d' default.js > default.json
-	 
-	# Now push it to the update URL
-	curl -X POST -H "Accept: application/json" -d @default.json http://localhost:8080/updateCenter/byId/default/postBack --verbose
+	result=$(wget -nv -S -O default.js http://updates.jenkins-ci.org/update-center.json 2>&1 | grep -c "200 OK")
 	
+	if[ $result -neq 0 ] ; then
+	  
+		# remove first and last line javascript wrapper
+		sed '1d;$d' default.js > default.json
+		 
+		# Now push it to the update URL
+		curl -X POST -H "Accept: application/json" -d @default.json http://localhost:8080/updateCenter/byId/default/postBack
 		
-	# Now install the desired plugins
-	$JENKINS install-plugin $VALUES
-
+			
+		# Now install the desired plugins
+		$JENKINS install-plugin $VALUES
+	fi
 fi
 
 
