@@ -50,8 +50,12 @@ rm -Rf *
 # get proxy setup file
 wget https://raw.github.com/vaconsulting/setup/master/scripts/_setup.sh
 chmod +x _setup.sh
+
 # display values just entered
 for PACKAGE in $VALUES
 do
 	./_setup.sh $PACKAGE
 done
+
+#Cleaning packages
+apt-get autoremove
