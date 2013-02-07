@@ -1,5 +1,6 @@
 #!/bin/bash
 
+sudo -i
 apt-get install dialog -y
 
 mariadb=""
@@ -25,6 +26,7 @@ VALUES=$(dialog --ok-label "Install" \
 	git "git client" off \
 	zend-server "Zend Server" off \
 	webmin "Webmin management interface" off \
+	composer "Composer" off \
 	jenkins "Jenkins continuous integration server" off \
 2>&1 1>&3)
 
