@@ -46,7 +46,7 @@ if [ $grep_output -eq 0 ]; then
 	echo "alias jenkins=\"$JENKINS\"" >> /etc/profile
 	source /etc/profile
 fi
-
+exit
 # open fd
 exec 3>&1
  
@@ -82,7 +82,7 @@ if [ $RESULT -eq 0 ] ; then
 	
 	# Get the update center ourself
 	WGETRESULT=$(wget -nv -S -O default.js http://updates.jenkins-ci.org/update-center.json 2>&1 | grep -c "200 OK")
-	echo $WGETRESULT
+
 	if [ $WGETRESULT -eq 1 ] ; then
 	  
 		# remove first and last line javascript wrapper
