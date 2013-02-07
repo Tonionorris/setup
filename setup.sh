@@ -57,4 +57,4 @@ do
 done
 
 #Cleaning packages
-apt-get autoremove
+apt-get autoremove -y
