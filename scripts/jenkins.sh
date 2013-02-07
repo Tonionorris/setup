@@ -1,6 +1,9 @@
 #!/bin/bash
 
-jenkins="java -jar /usr/local/bin/jenkins-cli.jar -s http://localhost:8080"
+# install xdebug for zend server
+pecl install xdebug
+
+JENKINS="java -jar /usr/local/bin/jenkins-cli.jar -s http://localhost:8080"
 
 wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
 
@@ -40,10 +43,10 @@ wget http://localhost:8080/jnlpJars/jenkins-cli.jar && mv jenkins-cli.jar /usr/l
 
 grep_output=$(grep -c jenkins /etc/profile)
 if [ $grep_output -eq 0 ]; then
-	echo 'alias jenkins="$jenkins"' >> /etc/profile
+	echo "alias jenkins=\"$JENKINS\"" >> /etc/profile
 	source /etc/profile
 fi
 
-$jenkins install-plugin phing analysis-collector checkstyle cloverphp dry htmlpublisher jdepend plot pmd violations xunit github
+$JENKINS install-plugin phing analysis-collector checkstyle cloverphp dry htmlpublisher jdepend plot pmd violations xunit github
 
-$jenkins safe-restart
+$JENKINS safe-restart
