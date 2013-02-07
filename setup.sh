@@ -16,6 +16,7 @@ exec 3>&1
 VALUES=$(dialog --ok-label "Install" \
 	  --separate-output \
 	  --backtitle "" \
+	  --clear \
 	  --title "Setup your server" \
 	  --checklist "Choose packages to install" \
 15 70 0 \
@@ -26,10 +27,16 @@ VALUES=$(dialog --ok-label "Install" \
 	webmin "Webmin management interface" off \
 	jenkins "Jenkins continuous integration server" off \
 2>&1 1>&3)
- 
+
+RESULT=$?
+
 # close fd
 exec 3>&-
 clear
+
+if [ $RESULT -neq 0 ] ; then
+	exit
+fi
 
 # update installed
 apt-get update
