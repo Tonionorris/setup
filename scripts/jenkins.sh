@@ -46,7 +46,7 @@ if [ $grep_output -eq 0 ]; then
 	echo "alias jenkins=\"$JENKINS\"" >> /etc/profile
 	source /etc/profile
 fi
-exit
+
 # open fd
 exec 3>&1
  
