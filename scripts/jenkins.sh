@@ -20,7 +20,7 @@ a2enmod vhost_alias
 
 echo "<VirtualHost *:80>
 	ServerAdmin ovh@valain.com
-	ServerName jenkins.vaconsulting.lu
+	ServerName jenkins.vac.lu
 	ProxyRequests Off
 	<Proxy *>
 		Order deny,allow
