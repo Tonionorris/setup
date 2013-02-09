@@ -5,6 +5,8 @@ ZEND_EXT_MANAG_CONF=/usr/local/zend/etc/conf.d/extension_manager.ini
 XDEBUG_EXT=zend_extension=/usr/local/zend/lib/php_extensions/xdebug.so
 
 # install xdebug for zend server
+apt-get update
+apt-get install build-essential fakeroot checkinstall -y
 pecl install xdebug
 
 # disable zend debugger
