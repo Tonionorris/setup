@@ -37,6 +37,9 @@ if [ $SETUP -eq 0 ] ; then
 fi
 /usr/local/zend/bin/zendctl.sh restart
 
+# install phpunit
+pear install --alldeps phpunit/PHPUnit
+
 JENKINS="java -jar /usr/local/bin/jenkins-cli.jar -s http://localhost:8080"
 
 wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
