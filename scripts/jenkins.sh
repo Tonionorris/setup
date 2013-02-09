@@ -12,8 +12,8 @@ DISABLED=$(cat $ZEND_DEBUGGER_CONF | grep -c ';zend_extension_manager\.dir\.debu
 if [ $DISABLED -eq 0 ] ; then
 	sed '2,2s/zend_extension_manager\.dir\.debugger/;zend_extension_manager\.dir\.debugger/' \
 	$ZEND_DEBUGGER_CONF > $ZEND_DEBUGGER_CONF.tmp
-	rm ZEND_DEBUGGER_CONF
-	mv ZEND_DEBUGGER_CONF.tmp ZEND_DEBUGGER_CONF
+	rm $ZEND_DEBUGGER_CONF
+	mv $ZEND_DEBUGGER_CONF.tmp $ZEND_DEBUGGER_CONF
 fi
 SETUP=$(cat $ZEND_EXT_MANAG_CONF | grep -c $XDEBUG_EXT)
 if [ $SETUP -eq 0 ] ; then
