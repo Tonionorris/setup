@@ -31,7 +31,9 @@ if [ $DISABLED -eq 0 ] ; then
 fi
 SETUP=$(cat $ZEND_EXT_MANAG_CONF | grep -c $XDEBUG_EXT)
 if [ $SETUP -eq 0 ] ; then
-	sed "2i$XDEBUG_EXT"
+	sed "2i$XDEBUG_EXT" $ZEND_EXT_MANAG_CONF > $ZEND_EXT_MANAG_CONF.tmp
+	rm $ZEND_EXT_MANAG_CONF
+	mv $ZEND_EXT_MANAG_CONF.tmp $ZEND_EXT_MANAG_CONF
 fi
 /usr/local/zend/bin/zendctl.sh restart
 
