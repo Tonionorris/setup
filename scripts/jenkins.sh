@@ -1,7 +1,25 @@
 #!/bin/bash
 
+ZEND_DEBUGGER_CONF=/usr/local/zend/etc/conf.d/debugger.ini
+ZEND_EXT_MANAG_CONF=/usr/local/zend/etc/conf.d/extension_manager.ini
+XDEBUG_EXT=zend_extension=/usr/local/zend/lib/php_extensions/xdebug.so
+
 # install xdebug for zend server
 pecl install xdebug
+
+# disable zend debugger
+DISABLED=$(cat $ZEND_DEBUGGER_CONF | grep -c ';zend_extension_manager\.dir\.debugger')
+if [ $DISABLED -eq 0 ] ; then
+	sed '2,2s/zend_extension_manager\.dir\.debugger/;zend_extension_manager\.dir\.debugger/' \
+	$ZEND_DEBUGGER_CONF > $ZEND_DEBUGGER_CONF.tmp
+	rm ZEND_DEBUGGER_CONF
+	mv ZEND_DEBUGGER_CONF.tmp ZEND_DEBUGGER_CONF
+fi
+SETUP=$(cat $ZEND_EXT_MANAG_CONF | grep -c $XDEBUG_EXT)
+if [ $SETUP -eq 0 ] ; then
+	sed "2i$XDEBUG_EXT"
+fi
+/usr/local/zend/bin/zendctl.sh restart
 
 JENKINS="java -jar /usr/local/bin/jenkins-cli.jar -s http://localhost:8080"
 
