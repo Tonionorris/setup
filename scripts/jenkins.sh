@@ -76,7 +76,7 @@ service apache2 reload
 # install required pear packages
 $PEAR upgrade PEAR
 $PEAR config-set auto_discover 1
-$PEAR install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox-0.4.0
+$PEAR install --alldeps pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox-0.4.0
 
 # Grab the jenkins CLI
 wget http://localhost:8080/jnlpJars/jenkins-cli.jar && mv jenkins-cli.jar /usr/local/bin/jenkins-cli.jar
