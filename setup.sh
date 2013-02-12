@@ -1,5 +1,9 @@
 #!/bin/bash
 
+
+# update installed
+apt-get update
+apt-get dist-upgrade -y
 apt-get install dialog -y
 
 # open fd
@@ -30,10 +34,6 @@ exec 3>&-
 if [ $RESULT -neq 0 ] ; then
 	exit
 fi
-
-# update installed
-apt-get update
-apt-get dist-upgrade -y
 
 # prepare temp folder
 mkdir -p /tmp/setup
