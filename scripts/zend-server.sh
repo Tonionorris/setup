@@ -1,5 +1,7 @@
 #!/bin/bash
 
+PEAR=/usr/local/zend/bin/pear
+
 VERSION="5.4"
 wget http://repos.zend.com/zend.key -O- |apt-key add -
 
@@ -18,15 +20,15 @@ LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:/usr/local/zend/lib" >> /etc/profile
 	source /etc/profile
 fi
 
-/usr/local/zend/bin/pear update-channels
-/usr/local/zend/bin/pear channel-discover pear.phpunit.de
-/usr/local/zend/bin/pear channel-discover pear.symfony.com
-/usr/local/zend/bin/pear channel-discover pear.phing.info
-/usr/local/zend/bin/pear channel-discover pear.pdepend.org
-/usr/local/zend/bin/pear channel-discover pear.phpmd.org
-/usr/local/zend/bin/pear channel-discover pear.phpdoc.org
-/usr/local/zend/bin/pear upgrade-all
-/usr/local/zend/bin/pear install --alldeps phpunit/PHPUnit
-/usr/local/zend/bin/pear install phing/phing
+$PEAR update-channels
+$PEAR channel-discover pear.phpunit.de
+$PEAR channel-discover pear.symfony.com
+$PEAR channel-discover pear.phing.info
+$PEAR channel-discover pear.pdepend.org
+$PEAR channel-discover pear.phpmd.org
+$PEAR channel-discover pear.phpdoc.org
+$PEAR upgrade-all
+$PEAR install --alldeps phpunit/PHPUnit
+$PEAR install phing/phing
 updatedb
 source /etc/profile

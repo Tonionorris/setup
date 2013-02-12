@@ -1,5 +1,10 @@
 #!/bin/bash
 
+
+JENKINS="java -jar /usr/local/bin/jenkins-cli.jar -s http://localhost:8080"
+PECL=/usr/local/zend/bin/pecl
+PEAR=/usr/local/zend/bin/pear
+
 ZEND_DEBUGGER_CONF=/usr/local/zend/etc/conf.d/debugger.ini
 ZEND_EXT_MANAG_CONF=/usr/local/zend/etc/conf.d/extension_manager.ini
 XDEBUG_EXT=zend_extension=/usr/local/zend/lib/php_extensions/xdebug.so
@@ -19,7 +24,7 @@ tar -zvxf autoconf-2.62.tar.gz
 rm autoconf-2.62.tar.gz
 cd autoconf-2.62/
 ./configure && make && make install
-pecl install xdebug
+$PECL install xdebug
 
 # disable zend debugger
 DISABLED=$(cat $ZEND_DEBUGGER_CONF | grep -c ';zend_extension_manager\.dir\.debugger')
@@ -38,9 +43,7 @@ fi
 /usr/local/zend/bin/zendctl.sh restart
 
 # install phpunit
-pear install --alldeps phpunit/PHPUnit
-
-JENKINS="java -jar /usr/local/bin/jenkins-cli.jar -s http://localhost:8080"
+$PEAR install --alldeps phpunit/PHPUnit
 
 wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
 
@@ -71,9 +74,9 @@ a2ensite jenkins
 service apache2 reload
 
 # install required pear packages
-pear upgrade PEAR
-pear config-set auto_discover 1
-pear install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox-0.4.0
+$PEAR upgrade PEAR
+$PEAR config-set auto_discover 1
+$PEAR install pear.phpqatools.org/phpqatools pear.netpirates.net/phpDox-0.4.0
 
 # Grab the jenkins CLI
 wget http://localhost:8080/jnlpJars/jenkins-cli.jar && mv jenkins-cli.jar /usr/local/bin/jenkins-cli.jar
