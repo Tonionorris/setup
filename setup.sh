@@ -24,6 +24,7 @@ VALUES=$(dialog --ok-label "Install" \
 	webmin "Webmin management interface" off \
 	composer "Composer" off \
 	jenkins "Jenkins continuous integration server" off \
+	vmware-tools "VMware Tools" off \
 2>&1 1>&3)
 
 RESULT=$?
