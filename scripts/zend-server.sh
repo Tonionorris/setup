@@ -28,6 +28,7 @@ $PEAR channel-discover pear.phpmd.org
 $PEAR channel-discover pear.phpdoc.org
 $PEAR upgrade-all
 $PEAR install --alldeps phpunit/PHPUnit
+$PEAR install --alldeps phpunit/DbUnit
 $PEAR install phing/phing
 updatedb
 source /etc/profile
