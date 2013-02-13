@@ -6,8 +6,7 @@ VERSION="5.4"
 wget http://repos.zend.com/zend.key -O- |apt-key add -
 
 echo "# Zend Server
-deb http://repos.zend.com/zend-server/deb server non-free
-deb http://repos.zend.com/zend-server/preview-php5.4/deb server non-free" > /etc/apt/sources.list.d/zend-server.list
+deb http://repos.zend.com/zend-server/6.0/deb_ssl1.0 server non-free" > /etc/apt/sources.list.d/zend-server.list
 
 apt-get update
 apt-get install -y zend-server-php-$VERSION php-$VERSION-extra-extensions-zend-server
