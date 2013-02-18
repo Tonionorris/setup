@@ -1,17 +1,17 @@
 #!/bin/bash
 
-clear
 mount /dev/cdrom /media/cdrom
+clear
 
 while [ ! -f /media/cdrom/VBoxLinuxAdditions.run ]
 do
-	read response -p "Please, insert the Virtual box guest additions disc and press [o]k or [a]bort"
+	read -p "Please, insert the Virtual box guest additions disc and press [o]k or [a]bort" response
 	if [ $response eq "a" ]
 	then
 		exit
 	fi
-	clear
 	mount /dev/cdrom /media/cdrom
+	clear
 done
 
 dist=$(uname -r)
