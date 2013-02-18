@@ -6,7 +6,7 @@ clear
 while [ ! -f /media/cdrom/VBoxLinuxAdditions.run ]
 do
 	read -p "Please, insert the Virtual box guest additions disc and press 'enter' or [a]bort ?" response
-	if [ $response eq "a" ]
+	if [ "$response" = "a" ]
 	then
 		exit
 	fi
