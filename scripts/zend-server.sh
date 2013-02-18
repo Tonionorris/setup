@@ -34,4 +34,5 @@ $PEAR install --alldeps phpunit/PHPUnit
 $PEAR install --alldeps phpunit/DbUnit
 $PEAR install phing/phing
 updatedb
+/usr/local/zend/bin/zendctl.sh restart
 source /etc/profile
