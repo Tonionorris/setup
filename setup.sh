@@ -55,3 +55,4 @@ done
 
 #Cleaning packages
 apt-get autoremove -y
+reboot
