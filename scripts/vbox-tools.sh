@@ -1,20 +1,20 @@
 #!/bin/bash
 
 mount /dev/cdrom /media/cdrom
-clear
+
 
 while [ ! -f /media/cdrom/VBoxLinuxAdditions.run ]
 do
+	clear
 	read -p "Please, insert the Virtual box guest additions disc and press 'enter' or [a]bort ?" response
 	if [ "$response" = "a" ]
 	then
 		exit
 	fi
 	mount /dev/cdrom /media/cdrom
-	clear
 done
 
 dist=$(uname -r)
-apt-get install dkms build-essential $dist
-apt-get install gcc
+apt-get -y install dkms build-essential $dist
+apt-get -y install gcc
 /media/cdrom/VBoxLinuxAdditions.run
