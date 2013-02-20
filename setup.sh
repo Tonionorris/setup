@@ -21,10 +21,10 @@ VALUES=$(dialog --ok-label "Install" \
 	subversion "SVN client" off \
 	git "git client" off \
 	zend-server "Zend Server" off \
-	webmin "Webmin management interface" off \
 	composer "Composer" off \
 	jenkins "Jenkins continuous integration server" off \
 	postfix "Mail Transfer Agent" off \
+	webmin "Webmin management interface" off \
 	vmware-tools "VMware Tools" off \
 	vbox-tools "VBox Tools" off \
 2>&1 1>&3)
