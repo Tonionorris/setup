@@ -26,6 +26,7 @@ VALUES=$(dialog --ok-label "Install" \
 	jenkins "Jenkins continuous integration server" off \
 	postfix "Mail Transfer Agent" off \
 	vmware-tools "VMware Tools" off \
+	vbox-tools "VBox Tools" off \
 2>&1 1>&3)
 
 RESULT=$?
@@ -54,3 +55,4 @@ done
 
 #Cleaning packages
 apt-get autoremove -y
+reboot
