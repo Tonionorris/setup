@@ -36,3 +36,4 @@ $PEAR install phing/phing
 updatedb
 /usr/local/zend/bin/zendctl.sh restart
 source /etc/profile
+ln -s /usr/local/zend/bin/php /usr/bin/php
