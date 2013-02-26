@@ -24,7 +24,8 @@ $PECL install xdebug
 xdebug_enabled=$(grep -c "xdebug" /usr/local/zend/etc/php.ini)
 
 if [ $xdebug_enabled -eq 0 ]; then
-    echo "zend_extension=/usr/local/zend/lib/php_extensions/xdebug.so" >> /usr/local/zend/etc/php.ini
+    echo "\
+zend_extension=\"/usr/local/zend/lib/php_extensions/xdebug.so\"" >> /usr/local/zend/etc/php.ini
 fi
 
 $PEAR update-channels
