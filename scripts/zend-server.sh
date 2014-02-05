@@ -3,11 +3,11 @@
 PEAR=/usr/local/zend/bin/pear
 PECL=/usr/local/zend/bin/pecl
 
-VERSION="5.4"
+VERSION="5.3"
 wget http://repos.zend.com/zend.key -O- |apt-key add -
 
 echo "# Zend Server
-deb http://repos.zend.com/zend-server/6.0/deb_ssl1.0 server non-free" > /etc/apt/sources.list.d/zend-server.list
+deb http://repos.zend.com/zend-server/6.2/deb_ssl1.0 server non-free" > /etc/apt/sources.list.d/zend-server.list
 
 apt-get update
 apt-get install -y zend-server-php-$VERSION build-essential automake
